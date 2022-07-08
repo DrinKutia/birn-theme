@@ -1,0 +1,15 @@
+/tmp
+/log
+/coverage
+/sqlitedbs
+/cache
+/old-cache
+.*.swp
+*~
+*#*#
+TAGS
+
+# Unused folders and files
+/vendor
+/docker
+.github

@@ -1,0 +1,39 @@
+# please note that this package list currently forms part of the
+# mysociety deployment infrastructure -- please discuss on the
+# alavateli mailing list if you want to change it
+build-essential
+bundler
+catdoc
+elinks
+gettext
+ghostscript
+gnuplot-nox
+imagemagick
+irb
+libapache2-mod-passenger
+libicu-dev
+libmagic-dev
+libmagickwand-dev
+libpq-dev
+libsqlite3-dev
+libxml2-dev
+libxslt1-dev
+links
+lockfile-progs
+memcached
+mutt
+pdftk (>> 1.41+dfsg-1) | pdftk (<< 1.41+dfsg-1) # that version has a non-functionining uncompress option
+poppler-utils
+rake (>= 0.9.2.2)
+rdoc
+ruby
+ruby-dev
+sqlite3
+tnef (>= 1.4.5)
+ttf-bitstream-vera
+unrtf
+unzip
+uuid-dev
+wkhtmltox
+wv
+xapian-tools

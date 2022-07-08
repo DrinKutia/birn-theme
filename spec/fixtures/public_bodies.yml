@@ -1,0 +1,115 @@
+# == Schema Information
+# Schema version: 20210114161442
+#
+# Table name: public_bodies
+#
+#  id                                     :integer          not null, primary key
+#  version                                :integer          not null
+#  last_edit_editor                       :string           not null
+#  last_edit_comment                      :text
+#  created_at                             :datetime         not null
+#  updated_at                             :datetime         not null
+#  home_page                              :text
+#  api_key                                :string           not null
+#  info_requests_count                    :integer          default("0"), not null
+#  disclosure_log                         :text
+#  info_requests_successful_count         :integer
+#  info_requests_not_held_count           :integer
+#  info_requests_overdue_count            :integer
+#  info_requests_visible_classified_count :integer
+#  info_requests_visible_count            :integer          default("0"), not null
+#  public_body_id                         :integer          not null
+#  name                                   :text
+#  short_name                             :text
+#  request_email                          :text
+#  url_name                               :text
+#  notes                                  :text
+#  first_letter                           :string
+#  publication_scheme                     :text
+#  disclosure_log                         :text
+#
+
+geraldine_public_body:
+  updated_at: 2007-10-24 10:51:01.161639
+  last_edit_comment: Mark named this stupid quango.
+  id: "2"
+  version: "1"
+  last_edit_editor: "mark"
+  created_at: 2007-10-24 10:51:01.161639
+  api_key: 1
+  info_requests_count: 4
+  info_requests_visible_classified_count: 4
+  info_requests_successful_count: 0
+  info_requests_not_held_count: 0
+  info_requests_overdue_count: 3
+  info_requests_visible_count: 4
+humpadink_public_body:
+  updated_at: 2007-10-25 10:51:01.161639
+  last_edit_comment: Not sure what this new department does.
+  id: 3
+  version: "2"
+  last_edit_editor: "francis"
+  created_at: 2007-10-25 10:51:01.161639
+  api_key: 2
+  info_requests_count: 2
+  info_requests_visible_classified_count: 2
+  info_requests_successful_count: 1
+  info_requests_not_held_count: 0
+  info_requests_overdue_count: 1
+  info_requests_visible_count: 2
+forlorn_public_body:
+  updated_at: 2011-01-26 14:11:02.12345
+  last_edit_comment: 'Aw, bless.'
+  id: 4
+  version: 1
+  last_edit_editor: "robin"
+  created_at: 2011-01-26 14:11:02.12345
+  api_key: 3
+  info_requests_count: 0
+  info_requests_visible_classified_count: 0
+  info_requests_successful_count: 0
+  info_requests_not_held_count: 0
+  info_requests_overdue_count: 0
+  info_requests_visible_count: 0
+silly_walks_public_body:
+  id: 5
+  version: 1
+  updated_at: 2007-10-25 10:51:01.161639
+  last_edit_comment: Is a comment really required?
+  last_edit_editor: robin
+  created_at: 2007-10-25 10:51:01.161639
+  api_key: 4
+  info_requests_count: 2
+  info_requests_visible_classified_count: 2
+  info_requests_successful_count: 2
+  info_requests_not_held_count: 0
+  info_requests_overdue_count: 0
+  info_requests_visible_count: 2
+sensible_walks_public_body:
+  id: 6
+  version: 1
+  updated_at: 2008-10-25 10:51:01.161639
+  last_edit_comment: Another stunning innovation from your friendly national government
+  last_edit_editor: robin
+  created_at: 2008-10-25 10:51:01.161639
+  api_key: 5
+  info_requests_count: 1
+  info_requests_visible_classified_count: 1
+  info_requests_successful_count: 1
+  info_requests_not_held_count: 0
+  info_requests_overdue_count: 0
+  info_requests_visible_count: 1
+other_public_body:
+  id: 7
+  version: 1
+  updated_at: 2008-10-25 10:51:01.161639
+  last_edit_comment: Another edit
+  last_edit_editor: louise
+  created_at: 2008-10-25 10:51:01.161639
+  api_key: 6
+  info_requests_count: 0
+  info_requests_visible_classified_count: 0
+  info_requests_successful_count: 0
+  info_requests_not_held_count: 0
+  info_requests_overdue_count: 0
+  info_requests_visible_count: 0

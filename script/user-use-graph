@@ -1,0 +1,10 @@
+#!/bin/bash
+# user-use-graph
+# Plot graph of user use of site.
+#
+# Copyright (c) 2009 UK Citizens Online Democracy. All rights reserved.
+# Email: hello@mysociety.org. WWW: http://www.mysociety.org/
+
+cd `dirname $0`
+bundle exec rake --silent "$@" graphs:generate_user_use_graph
+

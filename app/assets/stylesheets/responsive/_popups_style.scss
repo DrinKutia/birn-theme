@@ -1,0 +1,28 @@
+.popup {
+  background-color: #D1F2CB;
+  border: 1px solid darken(#D1F2CB, 15%);
+}
+
+.popup__close {
+  color: #333;
+  text-decoration: none;
+  opacity: 0.5;
+}
+
+
+/* Box that appears when you click the link icon in a request thread */
+#link_box {
+  text-align:left;
+  background-color:#FFF;
+  opacity:0.9;
+  border-radius:6px;
+  -moz-border-radius:6px;
+  border:1px solid #444;
+  padding:5px;
+}
+
+#link_box .close-button {
+  background-color:#444;
+  margin-left:15px;
+  padding:0;
+}

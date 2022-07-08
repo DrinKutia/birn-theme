@@ -1,0 +1,22 @@
+#!/bin/bash
+
+LOC="`dirname "${BASH_SOURCE[0]}"`"/..
+cd "$LOC"
+
+# Specific file if specified
+if [ x$1 != x ]
+then
+    case "$1" in
+      /*) f=$1 ;;
+       *) f=$(pwd)/$1 ;;
+    esac
+    bundle exec rails runner 'MailServerLog.load_file("'$f'")'
+    exit
+fi
+
+# Load in last three days worth of logs (if they've been modified)
+LATEST=$( ls $(bin/config MTA_LOG_PATH) 2>/dev/null | sort | tail -3 )
+for X in $LATEST
+do
+    bundle exec rails runner 'MailServerLog.load_file("'$X'")'
+done

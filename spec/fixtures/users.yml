@@ -1,0 +1,165 @@
+# == Schema Information
+# Schema version: 20210921094059
+#
+# Table name: users
+#
+#  id                                :integer          not null, primary key
+#  email                             :string           not null
+#  name                              :string           not null
+#  hashed_password                   :string           not null
+#  salt                              :string
+#  created_at                        :datetime         not null
+#  updated_at                        :datetime         not null
+#  email_confirmed                   :boolean          default("false"), not null
+#  url_name                          :text             not null
+#  last_daily_track_email            :datetime         default("2000-01-01 00:00:00")
+#  ban_text                          :text             default(""), not null
+#  about_me                          :text             default(""), not null
+#  locale                            :string
+#  email_bounced_at                  :datetime
+#  email_bounce_message              :text             default(""), not null
+#  no_limit                          :boolean          default("false"), not null
+#  receive_email_alerts              :boolean          default("true"), not null
+#  can_make_batch_requests           :boolean          default("false"), not null
+#  otp_enabled                       :boolean          default("false"), not null
+#  otp_secret_key                    :string
+#  otp_counter                       :integer          default("1")
+#  confirmed_not_spam                :boolean          default("false"), not null
+#  comments_count                    :integer          default("0"), not null
+#  info_requests_count               :integer          default("0"), not null
+#  track_things_count                :integer          default("0"), not null
+#  request_classifications_count     :integer          default("0"), not null
+#  public_body_change_requests_count :integer          default("0"), not null
+#  info_request_batches_count        :integer          default("0"), not null
+#  daily_summary_hour                :integer
+#  daily_summary_minute              :integer
+#  closed_at                         :datetime
+#  login_token                       :string
+#
+
+# If sample data has been loaded you can log in as any of these users with their
+# email/password combination. The password for all users is jonespassword.
+# annie@localhost is often most useful, as she has all available permissions.
+bob_smith_user:
+  id: "1"
+  name: Bob Smith
+  url_name: bob_smith
+  email: bob@localhost
+  salt: "-6116981980.392287733335677"
+  hashed_password: 6b7cd45a5f35fd83febc0452a799530398bfb6e8 # jonespassword
+  updated_at: 2007-10-31 10:39:15.491593
+  created_at: 2007-10-31 10:39:15.491593
+  email_confirmed: true
+  ban_text: ''
+  locale: 'en'
+  about_me: 'I like making requests about fancy dogs and naughty chickens and stuff.'
+  receive_email_alerts: true
+silly_name_user:
+  id: "2"
+  name: "Silly <em>Name</em>"
+  url_name: silly_emnameem
+  email: silly@localhost
+  salt: "-6116981980.392287733335677"
+  hashed_password: 6b7cd45a5f35fd83febc0452a799530398bfb6e8 # jonespassword
+  updated_at: 2007-11-01 10:39:15.491593
+  created_at: 2007-11-01 10:39:15.491593
+  email_confirmed: true
+  ban_text: ''
+  locale: 'en'
+  about_me: ''
+  receive_email_alerts: true
+admin_user:
+  id: "3"
+  name: Joe Admin
+  url_name: joe_admin
+  email: joe@localhost
+  salt: "-6116981980.392287733335677"
+  hashed_password: 6b7cd45a5f35fd83febc0452a799530398bfb6e8 # jonespassword
+  updated_at: 2007-11-01 10:39:15.491593
+  created_at: 2007-11-01 10:39:15.491593
+  email_confirmed: false
+  ban_text: ''
+  locale: ''
+  about_me: ''
+  receive_email_alerts: true
+unconfirmed_user:
+  id: "4"
+  name: "Unconfirmed"
+  url_name: unconfirmed
+  email: unconfirmed@localhost
+  salt: "-6116981980.392287733335677"
+  hashed_password: 6b7cd45a5f35fd83febc0452a799530398bfb6e8 # jonespassword
+  updated_at: 2007-11-01 10:39:15.491593
+  created_at: 2007-11-01 10:39:15.491593
+  email_confirmed: false
+  ban_text: ''
+  about_me: ''
+  receive_email_alerts: true
+robin_user:
+  id: 5
+  name: Robin Houston
+  url_name: robin_houston
+  email: robin@localhost
+  salt: "-6116981980.392287733335677"
+  hashed_password: 6b7cd45a5f35fd83febc0452a799530398bfb6e8 # jonespassword
+  updated_at: 2012-01-01 10:39:15.491593
+  created_at: 2012-01-01 10:39:15.491593
+  email_confirmed: true
+  ban_text: ''
+  about_me: 'I am the best'
+  receive_email_alerts: true
+another_user:
+  id: 6
+  name: Another User
+  url_name: another_user
+  email: another@localhost
+  salt: "-6116981980.392287733335677"
+  hashed_password: 6b7cd45a5f35fd83febc0452a799530398bfb6e8 # jonespassword
+  updated_at: 2012-01-01 10:39:15.491593
+  created_at: 2012-01-01 10:39:15.491593
+  email_confirmed: true
+  ban_text: ''
+  about_me: 'Just another user'
+  receive_email_alerts: true
+paul_pro_user:
+  id: 7
+  name: Paul Pro
+  url_name: paul_pro
+  email: paul@localhost
+  salt: "-6116981980.392287733335677"
+  hashed_password: 6b7cd45a5f35fd83febc0452a799530398bfb6e8 # jonespassword
+  updated_at: 2007-10-31 10:39:15.491593
+  created_at: 2007-10-31 10:39:15.491593
+  email_confirmed: true
+  ban_text: ''
+  locale: 'en'
+  about_me: 'Totes profesh'
+  receive_email_alerts: true
+annie_all_roles_user:
+  id: 8
+  name: Annie All Roles
+  url_name: annie_admin
+  email: annie@localhost
+  salt: "-6116981980.392287733335677"
+  hashed_password: 6b7cd45a5f35fd83febc0452a799530398bfb6e8 # jonespassword
+  updated_at: 2007-10-31 10:39:15.491593
+  created_at: 2007-10-31 10:39:15.491593
+  email_confirmed: true
+  ban_text: ''
+  locale: 'en'
+  about_me: 'All the roles'
+  receive_email_alerts: true
+peter_pro_admin_user:
+  id: 9
+  name: Peter Pro Admin
+  url_name: peter_pro_admin
+  email: peter@localhost
+  salt: "-6116981980.392287733335677"
+  hashed_password: 6b7cd45a5f35fd83febc0452a799530398bfb6e8 # jonespassword
+  updated_at: 2007-10-31 10:39:15.491593
+  created_at: 2007-10-31 10:39:15.491593
+  email_confirmed: true
+  ban_text: ''
+  locale: 'en'
+  about_me: ''
+  receive_email_alerts: true

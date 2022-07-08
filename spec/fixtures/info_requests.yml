@@ -1,0 +1,177 @@
+# == Schema Information
+# Schema version: 20210114161442
+#
+# Table name: info_requests
+#
+#  id                                    :integer          not null, primary key
+#  title                                 :text             not null
+#  user_id                               :integer
+#  public_body_id                        :integer          not null
+#  created_at                            :datetime         not null
+#  updated_at                            :datetime         not null
+#  described_state                       :string           not null
+#  awaiting_description                  :boolean          default("false"), not null
+#  prominence                            :string           default("normal"), not null
+#  url_title                             :text             not null
+#  law_used                              :string           default("foi"), not null
+#  allow_new_responses_from              :string           default("anybody"), not null
+#  handle_rejected_responses             :string           default("bounce"), not null
+#  idhash                                :string           not null
+#  external_user_name                    :string
+#  external_url                          :string
+#  attention_requested                   :boolean          default("false")
+#  comments_allowed                      :boolean          default("true"), not null
+#  info_request_batch_id                 :integer
+#  last_public_response_at               :datetime
+#  reject_incoming_at_mta                :boolean          default("false"), not null
+#  rejected_incoming_count               :integer          default("0")
+#  date_initial_request_last_sent_at     :date
+#  date_response_required_by             :date
+#  date_very_overdue_after               :date
+#  last_event_forming_initial_request_id :integer
+#  use_notifications                     :boolean
+#  last_event_time                       :datetime
+#  incoming_messages_count               :integer          default("0")
+#  public_token                          :string
+#
+
+fancy_dog_request:
+    id: 101
+    title: Why do you have & such a fancy dog?
+    url_title: why_do_you_have_such_a_fancy_dog
+    created_at: 2007-10-11 18:15:57
+    updated_at: 2007-10-11 18:15:57
+    public_body_id: 2
+    user_id: 1
+    described_state: waiting_response
+    awaiting_description: true
+    comments_allowed: true
+    last_public_response_at: 2007-11-13 18:09:20.042061
+    idhash: 50929748
+    use_notifications: false
+naughty_chicken_request:
+    id: 103
+    title: How much public money is wasted on breeding naughty chickens?
+    url_title: how_much_public_money_is_wasted_o
+    created_at: 2007-10-13 18:15:57
+    updated_at: 2007-10-13 18:15:57
+    public_body_id: 2
+    user_id: 1
+    described_state: waiting_response
+    awaiting_description: false
+    comments_allowed: true
+    idhash: e8d18c84
+    use_notifications: false
+badger_request:
+    id: 104
+    title: Are you really a badger?
+    url_title: are_you_really_a_badger
+    created_at: 2011-10-13 18:15:57
+    updated_at: 2011-10-13 18:15:57
+    public_body_id: 3
+    user_id: 1
+    described_state: waiting_response
+    awaiting_description: false
+    comments_allowed: true
+    idhash: e8d18c85
+    use_notifications: false
+boring_request:
+    id: 105
+    title: The cost of boring
+    url_title: the_cost_of_boring
+    created_at: 2006-01-12 01:56:58.586598
+    updated_at: 2008-08-12 12:05:12.879634
+    public_body_id: 3
+    user_id: 1
+    described_state: successful
+    awaiting_description: false
+    comments_allowed: true
+    last_public_response_at: 2007-11-13 18:00:20
+    idhash: 173fd003
+    use_notifications: false
+another_boring_request:
+    id: 106
+    title: The cost of boring
+    url_title: the_cost_of_boring_two # Not _2, because we want to avoid the search collapsing these two
+    created_at: 2006-01-12 01:56:58.586598
+    updated_at: 2007-11-13 18:09:20.042061
+    public_body_id: 5
+    user_id: 1
+    described_state: successful
+    awaiting_description: false
+    comments_allowed: true
+    last_public_response_at: 2007-11-13 18:09:20.042061
+    idhash: 173fd004
+    use_notifications: false
+
+# A pair of identical requests (with url_title differing only in the numeric suffix)
+# used to test the request de-duplication features.
+spam_1_request:
+    id: 107
+    title: Cheap v1agra
+    url_title: spam_1
+    created_at: 2010-01-01 01:23:45.6789100
+    updated_at: 2010-01-01 01:23:45.6789100
+    public_body_id: 5
+    user_id: 5
+    described_state: successful
+    awaiting_description: false
+    comments_allowed: false
+    last_public_response_at: 2001-01-03 01:23:45.6789100
+    idhash: 173fd005
+    use_notifications: false
+spam_2_request:
+    id: 108
+    title: Cheap v1agra
+    url_title: spam_2
+    created_at: 2010-01-01 02:23:45.6789100
+    updated_at: 2010-01-01 02:23:45.6789100
+    public_body_id: 6
+    user_id: 5
+    described_state: successful
+    awaiting_description: false
+    comments_allowed: true
+    idhash: 173fd006
+    use_notifications: false
+external_request:
+    id: 109
+    title: Balalas
+    url_title: balalas
+    external_user_name: Bob Smith
+    external_url: http://www.example.org/request/balala
+    public_body_id: 2
+    described_state: waiting_response
+    awaiting_description: false
+    comments_allowed: true
+    created_at: 2001-01-02 02:23:45.6789100
+    updated_at: 2001-01-02 02:23:45.6789100
+    last_public_response_at: 2001-01-03 02:23:45.6789100
+    idhash: a1234567
+    use_notifications: false
+anonymous_external_request:
+    id: 110
+    title: Anonymous request
+    url_title: anonymous_request
+    external_user_name:
+    external_url: http://www.example.org/request/anonymous_requesr
+    public_body_id: 2
+    described_state: waiting_response
+    awaiting_description: false
+    comments_allowed: true
+    idhash: 7654321a
+    created_at: 2010-01-01 01:23:45.6789100
+    updated_at: 2010-01-01 01:23:45.6789100
+    use_notifications: false
+other_request:
+    id: 111
+    title: Another request
+    url_title: another_request
+    created_at: 2010-01-01 02:23:45.6789100
+    updated_at: 2010-01-01 02:23:45.6789100
+    public_body_id: 7
+    user_id: 6
+    described_state: waiting_response
+    awaiting_description: false
+    comments_allowed: true
+    idhash: b234567a
+    use_notifications: false

@@ -1,0 +1,50 @@
+<div class="incoming correspondence <%= incoming_message.prominence %> js-collapsable" id="incoming-<%= incoming_message.id %>">
+  <div class="correspondence__header">
+    <span class="correspondence__header__author js-collapsable-trigger">
+      <% if incoming_message.specific_from_name? %>
+        <%= incoming_message.safe_mail_from %>,
+      <% end %>
+      <% if incoming_message.from_public_body? %>
+        <%= @info_request.public_body.name %>
+      <% end %>
+    </span>
+
+    <%= link_to incoming_message_path(incoming_message, anchor_only: true), :class => 'correspondence__header__date' do %>
+      <%= simple_date(incoming_message.sent_at) %>
+    <% end %>
+  </div>
+
+  <%- if cannot?(:read, incoming_message) %>
+    <%= render :partial => 'request/hidden_correspondence', :locals => { :message => incoming_message } %>
+  <%- else %>
+    <%= render :partial => 'request/restricted_correspondence', :locals => {:message => incoming_message } %>
+
+    <% if feature_enabled?(:refusal_identification) %>
+      <%= render partial: 'request/incoming_refusals',
+                 locals: { incoming_message: incoming_message } %>
+    <% end %>
+
+    <%= render :partial => 'request/bubble',
+               :locals => { :incoming_message => incoming_message,
+                            :body => incoming_message.get_body_for_html_display(@collapse_quotes),
+                            :attachments => incoming_message.get_attachments_for_display }  %>
+
+    <p class="event_actions">
+      <% if !@user.nil? && @user.admin_page_links? %>
+        <%= link_to "Admin", edit_admin_incoming_message_path(incoming_message.id) %>
+      <% end %>
+    </p>
+
+    <% if show_correspondence_footer %>
+      <% link_to_this_url = incoming_message_url(incoming_message) %>
+
+      <% report_path =
+           new_request_report_path(request_id: @info_request.url_title,
+                                   incoming_message_id: incoming_message.id) %>
+
+      <%= render partial: 'request/correspondence_footer',
+                 locals: { link_to_this_url: link_to_this_url,
+                           report_path: report_path } %>
+    <% end %>
+  <%- end %>
+</div>

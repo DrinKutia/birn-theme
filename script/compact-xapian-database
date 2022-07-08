@@ -1,0 +1,28 @@
+#!/bin/bash
+
+export RAILS_ENV=$1
+if [ -z $2 ]; then DAEMON_NAME=alaveteli; else DAEMON_NAME=$2; fi
+set -e
+
+cd "$(dirname "$0")"/..
+
+if [ -x /usr/bin/xapian-compact ];
+  then
+    XAPIAN_DB_DIR=$( pwd )/lib/acts_as_xapian/xapiandbs
+
+    if [ -e "$XAPIAN_DB_DIR/$RAILS_ENV.new" ];
+      then
+        echo >&2 "Didn't compact Xapian database because there was an existing database at $XAPIAN_DB_DIR/$RAILS_ENV.new"
+        exit 1
+      else
+        export XAPIAN_DB_DIR RAILS_ENV
+        commonlib/bin/output-on-error xapian-compact "$XAPIAN_DB_DIR/$RAILS_ENV" "$XAPIAN_DB_DIR/$RAILS_ENV.new"
+        mv "$XAPIAN_DB_DIR/$RAILS_ENV" "$XAPIAN_DB_DIR/$RAILS_ENV.tmp"
+        mv "$XAPIAN_DB_DIR/$RAILS_ENV.new" "$XAPIAN_DB_DIR/$RAILS_ENV"
+        rm -rf "$XAPIAN_DB_DIR/$RAILS_ENV.tmp"
+        commonlib/bin/output-on-error "/etc/init.d/$DAEMON_NAME" restart
+    fi
+  else
+    echo >&2 "Could not find xapian-compact script; have you installed xapian-tools?"
+    exit 1
+fi
