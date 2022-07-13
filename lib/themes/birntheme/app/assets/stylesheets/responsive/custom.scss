@@ -970,7 +970,50 @@ dt {
   }
 }
 
-.latest-requests {
+#frontpage_examples #examples_1 li {
+  border-bottom: 1px solid rgba(108, 109, 112, 0.4);
+}
+
+#examples_0 h3, #examples_1 h3 {
+    font-weight: 400;
+    font-size: 2rem;
+    line-height: 30px;
+  }
+
+#examples_0 h4, #examples_1 h4, #examples_0 ul a {
+    margin: 2rem 0;
+    font-weight: 400;
+    font-size: 1.25rem;
+    line-height: 23px;
+  }
+
+#examples_0 ul  {
+  margin-bottom: 4rem;
+
+  a {
+    margin: 0;
+    line-height: 28px;
+  }
+}
+
+#examples_1 {
+  ul {
+    margin-bottom: 4rem;
+  }
+
+  .request-listing__request-body p:first-child {
+    font-weight: 400;
+    font-size: 1.25rem;
+    margin-bottom: 0.625rem;
+  }
+
+  .request-body__time-ago {
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 18px;
+    color: $color_grey;
+  }
+
   .button-secondary {
     @include button-secondary;
     @include button-with-red-border;
@@ -982,13 +1025,6 @@ dt {
 
 /* Authority page */
 .authority__header__action-bar {
-  .action-bar__follow-button {
-    .track_action,
-    .link_button_green {
-      @include button-secondary();
-      @include follow-button();
-    }
-  }
 
   .action-bar__follower-count {
     @include follower-count();
@@ -1208,6 +1244,98 @@ textarea {
   font-weight: 400;
   font-size: 1.25rem;
   line-height: 19px;
+}
+
+// Public Authority
+
+.controller_public_body {
+  .authority__header {
+    border-bottom: 1px solid rgba(108, 109, 112, 0.4);
+    padding-bottom: 1.5rem;
+
+    h1 {
+      font-weight: 400;
+      font-size: 4.0625rem;
+      line-height: 61px;
+    }
+
+    &__subtitle {
+      font-weight: 500;
+      font-size: 1.25rem;
+      color: $color_grey;
+    }
+
+    &__notes, &__stats {
+      font-size: 1.125rem;
+    }
+
+    &__action-bar {
+      display: flex;
+      justify-content: space-between;
+      border-top: none;
+
+      .make-request__action {
+        @include button-base;
+        @include button-red;
+        font-weight: 400;
+        font-size: 1.25rem;
+        line-height: 19px;
+      }
+    }
+  }
+
+  .authority__body__sidebar {
+    h2 {
+      font-weight: 400;
+      font-size: 2rem;
+      line-height: 30px;
+      margin-bottom: 3rem;
+    }
+
+    a {
+      font-weight: 400;
+      font-size: 1.25rem;
+      line-height: 28px;
+    }
+  }
+
+  &__requests_message {
+    margin-top: 2rem;
+  }
+
+  .request_listing {
+    border-bottom: 1px solid rgba(108, 109, 112, 0.4);
+  }
+
+  .request_left {
+    .head a {
+      font-weight: 400;
+      font-size: 2rem;
+      line-height: 36px;
+    }
+
+    .requester {
+      font-weight: 500;
+      font-size: 1.125rem;
+      line-height: 22px;
+      margin-top: 1.25rem;
+    }
+
+    p {
+      font-size: 1rem;
+      font-weight: 400 !important;
+      color: $color_grey;
+    }
+  }
+
+  .request_right {
+    .desc {
+      font-weight: 500;
+      font-size: 1.125rem;
+      line-height: 22px;
+    }
+  }
+
 }
 
 // view authorities
@@ -1508,10 +1636,11 @@ textarea {
   &__wrapper {
     display: flex;
     padding: 4rem 0;
-
+    
     > div {
       width: 32%;
       padding-right: 2rem;
+      margin-right: 10rem;
     }
   }
 
