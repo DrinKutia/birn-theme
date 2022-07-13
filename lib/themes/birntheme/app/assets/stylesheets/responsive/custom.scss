@@ -1093,7 +1093,8 @@ textarea {
 .controller_public_body,
 .controller_help,
 .controller_sessions,
-.controller_user {
+.controller_user,
+.controller_general {
 
   @media (max-width: 928px) {
     width: 85%;
@@ -1125,15 +1126,15 @@ textarea {
 
     .body-listing__description {
       font-weight: 500;
-    font-size: 1.125rem;
-    line-height: 22px;
-    margin-top: 1.25rem;
+      font-size: 1.125rem;
+      line-height: 22px;
+      margin-top: 1.25rem;
     }
     
     .body-listing__request-count {
-    font-size: 1rem;
-    color: $color_white;
-    margin-top: 1.25rem;
+      font-size: 1rem;
+      color: $color_white;
+      margin-top: 1.25rem;
     }
 
     &__request-button {
@@ -1399,6 +1400,60 @@ textarea {
   color: $color_grey;
 }
 
+.controller_general {
+
+  .header_left h1 {
+    margin-top: 0;
+    font-weight: 400;
+    font-size: 4.0625rem;
+    line-height: 61px;
+  }
+
+  .advanced-search {
+
+    p {
+      font-weight: 500;
+      font-size: 1.25rem;
+      color: $color_grey;
+    }
+
+    input[type="text"] {
+      margin-right: 1.2rem;
+    }
+
+    input[type="submit"] {
+      @include button-base;
+      @include button-red;
+      padding: 1rem;
+      font-weight: 400;
+      font-size: 1.25rem;
+      line-height: 19px;
+    }
+  }
+
+   .advanced-search-tips {
+ 
+    h2 {
+      font-weight: 400;
+      font-size: 2rem;
+      line-height: 36px;
+      color: $color_light_red;
+      margin-top: 4rem;
+    }
+
+    ul, p, table {
+      font-weight: 500;
+      font-size: 1.125rem;
+      line-height: 24px;
+      margin-top: 1.5rem;
+    }
+
+    table tr td:first-child {
+      padding-right: 0.7rem;
+    }
+  }
+}
+
 .controller_help  {
 
   #right_column_flip {
@@ -1414,7 +1469,7 @@ textarea {
   #left_column_flip {
 
     dt {
-        font-weight: 400;
+      font-weight: 400;
       font-size: 2rem;
       line-height: 36px;
       color: $color_light_red;
@@ -1428,7 +1483,7 @@ textarea {
       margin-top: 1.5rem;
     }
 
-    #about__more {
+    .read__more {
       margin-top: 6rem;
       font-weight: 500;
       font-size: 1.125rem;
@@ -1445,9 +1500,50 @@ textarea {
   }
 }
 
-// footer
+// Footer
 
 .footer {
   border-top: none;
-  background-color: blue !important;
+
+  &__wrapper {
+    display: flex;
+    padding: 4rem 0;
+
+    > div {
+      width: 32%;
+      padding-right: 2rem;
+    }
+  }
+
+  &__site_name {
+    margin-top: 0;
+    font-size: 2.25rem;
+    font-weight: 400;
+  }
+
+  &__description {
+    font-size: 1.125rem;
+    font-weight: 500;
+    line-height: 25.2px;
+  }
+  
+  &__pages {
+    ul {
+      list-style-type: none;
+      padding-left: 0;
+      margin: 0;
+
+      li {
+        margin-bottom: 0.8rem;
+        font-size: 1.125rem;
+        font-weight: 500;
+
+        a {
+          &:hover, &:active {
+            color: $color_light_red !important;
+          }
+        }
+      }
+    }
+  }
 }
