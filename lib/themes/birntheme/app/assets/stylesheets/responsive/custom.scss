@@ -133,6 +133,47 @@ a {
   }
 }
 
+input {
+  border-radius: 10px !important;
+  border: 1px solid #6c6d70 !important;
+}
+
+input[type="text"],
+input[type="email"] {
+  padding-left: 1rem !important;
+}
+
+input[type="submit"] {
+  border: 1px solid $color_light_red !important;
+}
+
+::placeholder {
+  color: #fff;
+}
+
+textarea {
+  background-color: $form_input-bg;
+  border-radius: 10px;
+  border: none;
+  padding: 1.5625rem;
+}
+
+.controller_request,
+.controller_public_body,
+.controller_help,
+.controller_sessions,
+.controller_user,
+.controller_general {
+
+  @media (max-width: 928px) {
+    width: 85%;
+  }
+  padding: 4.5rem 0;
+  margin: 0 auto !important;
+  max-width: 64em !important;
+  width: 100% !important;
+}
+
 /* Let h1s be a little smaller on small screens */
 @media (max-width: $main_menu-mobile_menu_cutoff) {
   h1 {
@@ -149,7 +190,6 @@ form input[type="url"],
 form input[type="tel"],
 form input[type="number"] {
   padding: 1.5625rem !important;
-  border-radius: 0;
   background-color: $form_input-bg;
   /* Set a fixed height for text inputs in older IE 8 */
   @include ie8 {
@@ -164,6 +204,17 @@ form input[type="number"] {
 input.use-datepicker[type="text"] {
   width: auto;
   background: image-url("calendar.png") no-repeat 95% 50% $form_input-bg;
+}
+
+/* typography  */
+
+@mixin typography($font-size, $font-weight, $line-height) {
+    font-size: $font-size;
+    font-weight: $font-weight;
+
+    // @if $line-height != null {
+      line-height: $line-height;
+    // }
 }
 
 /* Button styles */
@@ -626,9 +677,11 @@ p.locale-list-trigger {
 }
 
 /* Footer */
-#footer {
+
+.footer {
   background-color: $color_brown;
-  // color: darken($color_neutral_light, 10%);
+  border-top: none;
+
   a {
     text-decoration: none;
     color: $color_white;
@@ -639,17 +692,46 @@ p.locale-list-trigger {
       text-decoration: underline;
     }
   }
-}
 
-.footer__about {
-  h2 {
-    color: $color_white;
+  &__wrapper {
+    display: flex;
+    padding: 4rem 0;
+  
+  > div {
+    width: 32%;
+    padding-right: 2rem;
+    margin-right: 10rem;
+    }
   }
-}
 
-.footer__final {
-  .row {
-    border-top: 1px solid lighten($color_neutral_dark, 6%);
+  &__site_name {
+    margin-top: 0;
+    font-size: 2.25rem;
+    font-weight: 400;
+  }
+
+  &__description {
+    @include typography(1.125rem, 500, 25.2px);
+  }
+  
+  &__pages {
+    ul {
+      list-style-type: none;
+      padding-left: 0;
+      margin: 0;
+
+      li {
+        margin-bottom: 0.8rem;
+        font-size: 1.125rem;
+        font-weight: 500;
+
+        a {
+          &:hover, &:active {
+            color: $color_light_red !important;
+          }
+        }
+      }
+    }
   }
 }
 
@@ -831,11 +913,144 @@ a.link_to_this {
 
 /* Help pages */
 
-dt {
-  font-weight: 700;
-  @include respond-min($main_menu-mobile_menu_cutoff) {
+#introduction_message {
+  font-weight: 500;
+  font-size: 1.25rem;
+  color: $color_grey;
+}
+
+.controller_general {
+  input {
+    accent-color: $color_light_red;
+  }
+
+  .header_left {
+    h1 {
+      @include typography(4.0625rem, 400, 61px);
+      margin-top: 0;
+    }
+
+    h3 {
+      font-size: 1.5rem;
+      font-weight: 400;
+    }
+
+    input[type="submit"] {
+      @include button-base;
+      @include button-red;
+      @include typography(1.25rem, 400, 19px);
+      padding: 1rem;
+    }
+
+    .date_range {
+      label.title {
+        @include respond-min($main_menu-mobile_menu_cutoff) {  
+          width: auto !important;
+        }
+      }
+    }
+
+    .filter-request-types {
+      ul {
+        margin-top: 1.3rem;
+      }
+    }
+  }
+
+  .header_right {
+    h2 {
+      font-size: 1.25rem;
+      font-weight: 400;
+    }
+
+    .feed_link_main:nth-of-type(1) a {
+        @include button-with-red-border();
+        margin-left: 0;
+    }
+  }
+
+  .advanced-search {
+
+    p {
+      font-weight: 500;
+      font-size: 1.25rem;
+      color: $color_grey;
+    }
+
+    input[type="text"] {
+      margin-right: 1.2rem;
+    }
+
+    input[type="submit"], a {
+      @include button-base;
+      @include button-red;
+      @include typography(1.25rem, 400, 19px);
+      padding: 1rem;
+    }
+
+    a {
+      @include button-with-red-border($arrow: true);
+    }
+  }
+
+   .advanced-search-tips {
+ 
+    h2 {
+      @include typography(2rem, 400, 36px);
+      color: $color_light_red;
+      margin-top: 4rem;
+    }
+
+    ul, p, table {
+      @include typography(1.125rem, 500, 24px);
+      margin-top: 1.5rem;
+    }
+
+    table tr td:first-child {
+      padding-right: 0.7rem;
+    }
+  }
+}
+
+.controller_help  {
+
+  #right_column_flip {
+    #contact__message {
+      @include typography(1.125rem, 500, 22px);
+      color: $color_grey;
+      width: 85%;
+    }
+  }
+
+  #left_column_flip {
+
+    dt {
+    @include typography(2rem, 400, 36px);
+    color: $color_light_red;
+    margin-top: 4rem;
+    @include respond-min($main_menu-mobile_menu_cutoff) {
     font-size: 2em;
     line-height: 1.1em;
+  }
+    }
+
+    dd {
+      @include typography(1.125rem, 500, 22px);
+      margin-top: 1.5rem;
+    }
+
+    .read__more {
+      @include typography(1.125rem, 500, 22px);
+      margin-top: 6rem;
+
+      a {
+        @include button-base;
+        @include button-with-red-border($arrow: true);
+        padding: 1.25rem;
+        color: $color_white;
+        margin-left: 0.6rem;
+      }
+    }
   }
 }
 
@@ -883,9 +1098,7 @@ dt {
   margin: 0 auto;
 
   h2 {
-    font-weight: 400;
-    font-size: 65px;
-    line-height: 61px;
+    @include typography(65px, 400, 61px);
   }
 }
 
@@ -979,16 +1192,12 @@ dt {
 }
 
 #examples_0 h3, #examples_1 h3 {
-    font-weight: 400;
-    font-size: 2rem;
-    line-height: 30px;
+  @include typography(2rem, 400, 30px);
   }
 
 #examples_0 h4, #examples_1 h4, #examples_0 ul a {
     margin: 2rem 0;
-    font-weight: 400;
-    font-size: 1.25rem;
-    line-height: 23px;
+    @include typography(1.25rem, 400, 23px);
   }
 
 #examples_0 ul  {
@@ -1012,9 +1221,7 @@ dt {
   }
 
   .request-body__time-ago {
-    font-weight: 400;
-    font-size: 1rem;
-    line-height: 18px;
+    @include typography(1rem, 400, 18px);
     color: $color_grey;
   }
 
@@ -1104,47 +1311,6 @@ dt {
 
 // General
 
-input {
-  border-radius: 10px !important;
-  border: 1px solid #6c6d70 !important;
-}
-
-input[type="text"],
-input[type="email"] {
-  padding-left: 1rem !important;
-}
-
-input[type="submit"] {
-  border: 1px solid $color_light_red !important;
-}
-
-::placeholder {
-  color: #fff;
-}
-
-textarea {
-  background-color: $form_input-bg;
-  border-radius: 10px;
-  border: none;
-  padding: 1.5625rem;
-}
-
-.controller_request,
-.controller_public_body,
-.controller_help,
-.controller_sessions,
-.controller_user,
-.controller_general {
-
-  @media (max-width: 928px) {
-    width: 85%;
-  }
-  padding: 4.5rem 0;
-  margin: 0 auto !important;
-  max-width: 64em !important;
-  width: 100% !important;
-}
-
 .count_users_request {
   color: $color_light_red;
 }
@@ -1159,15 +1325,11 @@ textarea {
       border-bottom: 1px solid rgba(108, 109, 112, 0.4);
       
     .body-listing__header {
-      font-weight: 400;
-      font-size: 2rem;
-      line-height: 36px;
+      @include typography(2rem, 400, 36px);
     }
 
     .body-listing__description {
-      font-weight: 500;
-      font-size: 1.125rem;
-      line-height: 22px;
+      @include typography(1.125rem, 500, 22px);
       margin-top: 1.25rem;
     }
     
@@ -1197,6 +1359,48 @@ textarea {
   margin-bottom: 2rem !important;
 }
 
+.results_section {
+  h2 {
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: $color_light_red;
+  }
+  .request_listing {
+
+    border-bottom: 1px solid rgba(108, 109, 112, 0.4);
+    display: flex;
+    align-items: center;
+
+  .request_right {
+    .desc {
+      @include typography(1.125rem, 500, 22px);
+      background: url("quotes.png") no-repeat 0% 50%;
+      padding-left: 4.5rem;
+      min-height: 30px;
+    }
+  }
+
+    .request_left {
+      > p {
+        font-size: 1rem;
+        font-weight: 400 !important;
+        color: $color_grey;
+      }
+      .head a {
+        @include typography(2rem, 400, 36px);
+        color: $color_white;
+      }
+      .requester {
+        @include typography(1.125rem, 500, 22px);
+        margin-top: 1.25rem;
+        a {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
 
 // signin/signup
 
@@ -1212,9 +1416,7 @@ textarea {
   }
 
   h2 {
-    font-weight: 400;
-    font-size: 4.0625rem;
-    line-height: 61px;
+    @include typography(4.0625rem, 400, 61px);
     margin-top: 0;
   }
 }
@@ -1228,15 +1430,14 @@ textarea {
    }
 
   h2 {
-    font-weight: 400;
-    font-size: 2.875rem;
-    line-height: 43px;
+    @include typography(2.875px, 400, 43px);
     margin-top: 1rem;
   }
 }
 
 
 .form_note a {
+  @include typography(1.125rem, 400, 20px);
   font-weight: 400;
   font-size: 1.125rem;
   line-height: 20px;
@@ -1245,9 +1446,7 @@ textarea {
 .form_button input[type="submit"] {
   @include button-base;
   @include button-red;
-  font-weight: 400;
-  font-size: 1.25rem;
-  line-height: 19px;
+  @include typography(1.25rem, 400, 19px);
 }
 
 // Public Authority
@@ -1258,9 +1457,7 @@ textarea {
     padding-bottom: 1.5rem;
 
     h1 {
-      font-weight: 400;
-      font-size: 4.0625rem;
-      line-height: 61px;
+      @include typography(4.0625rem, 400, 61px);
     }
 
     &__subtitle {
@@ -1281,25 +1478,19 @@ textarea {
       .make-request__action {
         @include button-base;
         @include button-red;
-        font-weight: 400;
-        font-size: 1.25rem;
-        line-height: 19px;
+        @include typography(1.25rem, 400, 19px);
       }
     }
   }
 
   .authority__body__sidebar {
     h2 {
-      font-weight: 400;
-      font-size: 2rem;
-      line-height: 30px;
+      @include typography(2rem, 400, 30px);
       margin-bottom: 3rem;
     }
 
     a {
-      font-weight: 400;
-      font-size: 1.25rem;
-      line-height: 28px;
+      @include typography(1.25rem, 400, 28px);
     }
   }
 
@@ -1313,31 +1504,25 @@ textarea {
 
   .request_left {
     .head a {
-      font-weight: 400;
-      font-size: 2rem;
-      line-height: 36px;
+      @include typography(2rem, 400, 36px);
     }
 
     .requester {
-      font-weight: 500;
-      font-size: 1.125rem;
-      line-height: 22px;
+      @include typography(1.125rem, 500, 22px);
       margin-top: 1.25rem;
       color: $color_white;
     }
 
     p {
       font-size: 1rem;
-      font-weight: 400 !important;
+      font-weight: 400;
       color: $color_grey;
     }
   }
 
   .request_right {
     .desc {
-      font-weight: 500;
-      font-size: 1.125rem;
-      line-height: 22px;
+      @include typography(1.125rem, 500, 22px);
     }
   }
 
@@ -1356,33 +1541,25 @@ textarea {
   #left_column_flip {
     
     h1 {
+      @include typography(4.0625rem, 400, 61px);
       margin-top: 0;
-      font-weight: 400;
-      font-size: 4.0625rem;
-      line-height: 61px;
     }
 
     h2 {
-      font-size: 2rem;
-      font-weight: 400;
-      line-height: 30px;
+      @include typography(2rem, 400, 30px);
     }
 
   }
 
 #right_column_flip {
   h2 {
-    font-weight: 400;
-    font-size: 2rem;
-    line-height: 30px;
+    @include typography(2rem, 400, 30px);
     margin-bottom: 3rem;
     margin-top: 0;
   }
 
   h3 {
-    font-weight: 400;
-    font-size: 1.875em;
-    line-height: 29px;
+    @include typography(1.875rem, 400, 29px);
     margin-bottom: 2rem;
   }
 
@@ -1391,9 +1568,7 @@ textarea {
   }
 
    ul a, .list-sidebar-extra a {
-    font-weight: 400;
-    font-size: 1.25rem;
-    line-height: 28px;
+    @include typography(1.25rem, 400, 28px);
   }
 
   .list-sidebar-extra {
@@ -1426,9 +1601,7 @@ textarea {
 
 .controller_request {
   h1 {
-    font-weight: 400;
-    font-size: 4.0625rem;
-    line-height: 61px;
+    @include typography(4.0625rem, 400, 61px);
     margin-bottom: 2.4rem;
     margin-top: 0;
   }
@@ -1445,10 +1618,8 @@ textarea {
     input[type="submit"] {
       @include button-base;
       @include button-red;
+      @include typography(1.25rem, 400, 19px);
       padding: 1rem;
-      font-weight: 400;
-      font-size: 1.25rem;
-      line-height: 19px;
     }
   }
 
@@ -1471,16 +1642,14 @@ textarea {
 
   .new_info_request #request_header_text {
     font-size: 1.175rem;
-    font-size: 400;
+    font-weight: 400;
   }
 
   #search_form {
       max-width: 40em;
 
       input[type="submit"] {
-        font-weight: 400;
-        font-size: 1.25rem;
-        line-height: 19px;
+        @include typography(1.25rem, 400, 19px);
       }
 
       input[type="text"] {
@@ -1497,9 +1666,7 @@ textarea {
     }
     
     .typeahead_response p {
-      font-weight: 500;
-      font-size: 1.375rem;
-      line-height: 27px;
+      @include typography(1.375px, 500, 27px);
       color: $color_grey;
       padding-top: 2rem;
       border-top: 1px solid rgba(108, 109, 112, 0.4);
@@ -1536,58 +1703,6 @@ textarea {
     }
   }
 
-  .results_section {
-    h2 {
-	    font-size: 1.6rem;
-      font-weight: 400;
-      color: $color_light_red;
-    }
-
-    .request_listing {
-      border-bottom: 1px solid rgba(108, 109, 112, 0.4);
-      display: flex;
-      align-items: center;
-
-    .request_right {
-      .desc {
-        font-weight: 500;
-        font-size: 1.125rem;
-        line-height: 22px;
-        background: url("quotes.png") no-repeat 0% 50%;
-        padding-left: 4.5rem;
-        min-height: 30px;
-      }
-    }
-
-      .request_left {
-
-        > p {
-          font-size: 1rem;
-          font-weight: 400 !important;
-          color: $color_grey;
-        }
-
-        .head a {
-          font-weight: 400;
-          font-size: 2rem;
-          line-height: 36px;
-          color: $color_white;
-        }
-
-        .requester {
-          font-weight: 500;
-          font-size: 1.125rem;
-          line-height: 22px;
-          margin-top: 1.25rem;  
-
-          a {
-            text-decoration: underline;
-          }
-        }
-      }
-    }
-  }
-
   .sidebar {
     .feed_link_main:nth-of-type(1) a {
         @include button-with-red-border();
@@ -1601,263 +1716,4 @@ textarea {
    #query {
      width: calc(100% - 10em);
    }
-}
-
-// Help page
-
-#introduction_message {
-  font-weight: 500;
-  font-size: 1.25rem;
-  color: $color_grey;
-}
-
-.controller_general {
-
-  input {
-    accent-color: $color_light_red;
-  }
-
-  .header_left {
-    h1 {
-      margin-top: 0;
-      font-weight: 400;
-      font-size: 4.0625rem;
-      line-height: 61px;
-    }
-
-    h3 {
-      font-size: 1.5rem;
-      font-weight: 400;
-    }
-
-    input[type="submit"] {
-      @include button-base;
-      @include button-red;
-      padding: 1rem;
-      font-weight: 400;
-      font-size: 1.25rem;
-      line-height: 19px;
-    }
-
-    .date_range {
-      label.title {
-        @include respond-min($main_menu-mobile_menu_cutoff) {  
-          width: auto !important;
-        }
-      }
-    }
-
-    .filter-request-types {
-      ul {
-        margin-top: 1.3rem;
-      }
-    }
-  }
-
-  .results_section {
-    .request_listing {
-        border-bottom: 1px solid rgba(108, 109, 112, 0.4);
-        display: flex;
-        align-items: center;
-
-    .request_right {
-      .desc {
-        font-weight: 500;
-        font-size: 1.125rem;
-        line-height: 22px;
-        background: url("quotes.png") no-repeat 0% 50%;
-        padding-left: 4.5rem;
-        min-height: 30px;
-      }
-    }
-
-      .request_left {
-
-        > p {
-          font-size: 1rem;
-          font-weight: 400 !important;
-          color: $color_grey;
-        }
-
-        .head a {
-          font-weight: 400;
-          font-size: 2rem;
-          line-height: 36px;
-          color: $color_white;
-        }
-
-        .requester {
-          font-weight: 500;
-          font-size: 1.125rem;
-          line-height: 22px;
-          margin-top: 1.25rem;
-
-          a {
-            text-decoration: underline;
-          }
-        }
-      }
-    }
-  }
-
-  .results_section h2 {
-    font-size: 1.6rem;
-    font-weight: 400;
-    color: $color_light_red;
-  }
-
-  .header_right {
-    h2 {
-      font-size: 1.25rem;
-      font-weight: 400;
-    }
-
-    .feed_link_main:nth-of-type(1) a {
-        @include button-with-red-border();
-        margin-left: 0;
-    }
-  }
-
-  .advanced-search {
-
-    p {
-      font-weight: 500;
-      font-size: 1.25rem;
-      color: $color_grey;
-    }
-
-    input[type="text"] {
-      margin-right: 1.2rem;
-    }
-
-    input[type="submit"], a {
-      @include button-base;
-      @include button-red;
-      padding: 1rem;
-      font-weight: 400;
-      font-size: 1.25rem;
-      line-height: 19px;
-    }
-
-    a {
-      @include button-with-red-border($arrow: true);
-    }
-  }
-
-   .advanced-search-tips {
- 
-    h2 {
-      font-weight: 400;
-      font-size: 2rem;
-      line-height: 36px;
-      color: $color_light_red;
-      margin-top: 4rem;
-    }
-
-    ul, p, table {
-      font-weight: 500;
-      font-size: 1.125rem;
-      line-height: 24px;
-      margin-top: 1.5rem;
-    }
-
-    table tr td:first-child {
-      padding-right: 0.7rem;
-    }
-  }
-}
-
-.controller_help  {
-
-  #right_column_flip {
-    #contact__message {
-      color: $color_grey;
-      font-weight: 500;
-      font-size: 1.125rem;
-      line-height: 22px;
-      width: 85%;
-    }
-  }
-
-  #left_column_flip {
-
-    dt {
-      font-weight: 400;
-      font-size: 2rem;
-      line-height: 36px;
-      color: $color_light_red;
-      margin-top: 4rem;
-    }
-
-    dd {
-      font-weight: 500;
-      font-size: 1.125rem;
-      line-height: 22px;
-      margin-top: 1.5rem;
-    }
-
-    .read__more {
-      margin-top: 6rem;
-      font-weight: 500;
-      font-size: 1.125rem;
-      line-height: 22px;
-
-      a {
-        @include button-base;
-        @include button-with-red-border($arrow: true);
-        padding: 1.25rem;
-        color: $color_white;
-        margin-left: 0.6rem;
-      }
-    }
-  }
-}
-
-// Footer
-
-.footer {
-  border-top: none;
-
-  &__wrapper {
-    display: flex;
-    padding: 4rem 0;
-    
-    > div {
-      width: 32%;
-      padding-right: 2rem;
-      margin-right: 10rem;
-    }
-  }
-
-  &__site_name {
-    margin-top: 0;
-    font-size: 2.25rem;
-    font-weight: 400;
-  }
-
-  &__description {
-    font-size: 1.125rem;
-    font-weight: 500;
-    line-height: 25.2px;
-  }
-  
-  &__pages {
-    ul {
-      list-style-type: none;
-      padding-left: 0;
-      margin: 0;
-
-      li {
-        margin-bottom: 0.8rem;
-        font-size: 1.125rem;
-        font-weight: 500;
-
-        a {
-          &:hover, &:active {
-            color: $color_light_red !important;
-          }
-        }
-      }
-    }
-  }
 }
