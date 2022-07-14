@@ -162,8 +162,8 @@ form input[type="number"] {
 }
 
 input.use-datepicker[type="text"] {
-  width: 130px;
-  background: image-url("calendar.png") no-repeat 100px 5px $form_input-bg;
+  width: auto;
+  background: image-url("calendar.png") no-repeat 95% 50% $form_input-bg;
 }
 
 /* Button styles */
@@ -182,20 +182,24 @@ input.use-datepicker[type="text"] {
   }
 }
 
-@mixin button-with-red-border() {
-  padding-right: 5rem !important;
-  background-image: url("red-arrow.png");
-  background-repeat: no-repeat;
-  background-position: 90% 52%;
+@mixin button-with-red-border($arrow: false) {
+  @if $arrow {
+    padding-right: 5rem !important;
+    background-image: url("red-arrow.png");
+    background-repeat: no-repeat;
+    background-position: 90% 52%;
+  }
   background-color: transparent;
   border: 1px solid $color_light_red;
   transition: background-color 300ms ease-out;
 
   &:hover {
-    background-image: url("white-arrow.png");
-    background-repeat: no-repeat;
-    background-position: 90% 51.5%;
-    transition: background-image 300ms ease-out;
+    @if $arrow {
+      background-image: url("white-arrow.png");
+      background-repeat: no-repeat;
+      background-position: 90% 51.5%;
+      transition: background-image 300ms ease-out;
+    }
     background-color: $color_light_red;
     color: $color_white;
     transition: background-color 300ms ease-out;
@@ -852,7 +856,7 @@ dt {
 
   #examples_0 > a {
     @include button-secondary;
-    @include button-with-red-border;
+    @include button-with-red-border($arrow: true);
     padding: 1.25rem;
     font-size: 1.25rem;
     line-height: 19px;
@@ -953,7 +957,7 @@ dt {
   }
   a {
     @include button-secondary;
-    @include button-with-red-border;
+    @include button-with-red-border($arrow: true);
   }
 }
 
@@ -963,7 +967,7 @@ dt {
   }
   a {
     @include button-secondary;
-    @include button-with-red-border;
+    @include button-with-red-border($arrow: true);
     padding: 1.25rem;
     font-size: 1.25rem;
     line-height: 19px;
@@ -1016,7 +1020,7 @@ dt {
 
   .button-secondary {
     @include button-secondary;
-    @include button-with-red-border;
+    @include button-with-red-border($arrow: true);
     padding: 1.25rem;
     font-size: 1.25rem;
     line-height: 19px;
@@ -1319,6 +1323,7 @@ textarea {
       font-size: 1.125rem;
       line-height: 22px;
       margin-top: 1.25rem;
+      color: $color_white;
     }
 
     p {
@@ -1428,6 +1433,25 @@ textarea {
     margin-top: 0;
   }
 
+  #filter_requests_form {
+    input[type="text"] {
+        width: 100% !important;
+    }
+
+    input.use-datepicker[type="text"] {
+        width: 46.4% !important;
+    }
+
+    input[type="submit"] {
+      @include button-base;
+      @include button-red;
+      padding: 1rem;
+      font-weight: 400;
+      font-size: 1.25rem;
+      line-height: 19px;
+    }
+  }
+
   #request_advice {
     font-size: 1.175rem;
   }
@@ -1507,8 +1531,67 @@ textarea {
 
     a {
       @include button-base;
-      @include button-with-red-border;
+      @include button-with-red-border($arrow: true);
       padding: 1.25rem;
+    }
+  }
+
+  .results_section {
+    h2 {
+	    font-size: 1.6rem;
+      font-weight: 400;
+      color: $color_light_red;
+    }
+
+    .request_listing {
+      border-bottom: 1px solid rgba(108, 109, 112, 0.4);
+      display: flex;
+      align-items: center;
+
+    .request_right {
+      .desc {
+        font-weight: 500;
+        font-size: 1.125rem;
+        line-height: 22px;
+        background: url("quotes.png") no-repeat 0% 50%;
+        padding-left: 4.5rem;
+        min-height: 30px;
+      }
+    }
+
+      .request_left {
+
+        > p {
+          font-size: 1rem;
+          font-weight: 400 !important;
+          color: $color_grey;
+        }
+
+        .head a {
+          font-weight: 400;
+          font-size: 2rem;
+          line-height: 36px;
+          color: $color_white;
+        }
+
+        .requester {
+          font-weight: 500;
+          font-size: 1.125rem;
+          line-height: 22px;
+          margin-top: 1.25rem;  
+
+          a {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+
+  .sidebar {
+    .feed_link_main:nth-of-type(1) a {
+        @include button-with-red-border();
+        margin-left: 0;
     }
   }
 }
@@ -1530,11 +1613,109 @@ textarea {
 
 .controller_general {
 
-  .header_left h1 {
-    margin-top: 0;
+  input {
+    accent-color: $color_light_red;
+  }
+
+  .header_left {
+    h1 {
+      margin-top: 0;
+      font-weight: 400;
+      font-size: 4.0625rem;
+      line-height: 61px;
+    }
+
+    h3 {
+      font-size: 1.5rem;
+      font-weight: 400;
+    }
+
+    input[type="submit"] {
+      @include button-base;
+      @include button-red;
+      padding: 1rem;
+      font-weight: 400;
+      font-size: 1.25rem;
+      line-height: 19px;
+    }
+
+    .date_range {
+      label.title {
+        @include respond-min($main_menu-mobile_menu_cutoff) {  
+          width: auto !important;
+        }
+      }
+    }
+
+    .filter-request-types {
+      ul {
+        margin-top: 1.3rem;
+      }
+    }
+  }
+
+  .results_section {
+    .request_listing {
+        border-bottom: 1px solid rgba(108, 109, 112, 0.4);
+        display: flex;
+        align-items: center;
+
+    .request_right {
+      .desc {
+        font-weight: 500;
+        font-size: 1.125rem;
+        line-height: 22px;
+        background: url("quotes.png") no-repeat 0% 50%;
+        padding-left: 4.5rem;
+        min-height: 30px;
+      }
+    }
+
+      .request_left {
+
+        > p {
+          font-size: 1rem;
+          font-weight: 400 !important;
+          color: $color_grey;
+        }
+
+        .head a {
+          font-weight: 400;
+          font-size: 2rem;
+          line-height: 36px;
+          color: $color_white;
+        }
+
+        .requester {
+          font-weight: 500;
+          font-size: 1.125rem;
+          line-height: 22px;
+          margin-top: 1.25rem;
+
+          a {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+
+  .results_section h2 {
+    font-size: 1.6rem;
     font-weight: 400;
-    font-size: 4.0625rem;
-    line-height: 61px;
+    color: $color_light_red;
+  }
+
+  .header_right {
+    h2 {
+      font-size: 1.25rem;
+      font-weight: 400;
+    }
+
+    .feed_link_main:nth-of-type(1) a {
+        @include button-with-red-border();
+        margin-left: 0;
+    }
   }
 
   .advanced-search {
@@ -1549,13 +1730,17 @@ textarea {
       margin-right: 1.2rem;
     }
 
-    input[type="submit"] {
+    input[type="submit"], a {
       @include button-base;
       @include button-red;
       padding: 1rem;
       font-weight: 400;
       font-size: 1.25rem;
       line-height: 19px;
+    }
+
+    a {
+      @include button-with-red-border($arrow: true);
     }
   }
 
@@ -1619,7 +1804,7 @@ textarea {
 
       a {
         @include button-base;
-        @include button-with-red-border;
+        @include button-with-red-border($arrow: true);
         padding: 1.25rem;
         color: $color_white;
         margin-left: 0.6rem;
