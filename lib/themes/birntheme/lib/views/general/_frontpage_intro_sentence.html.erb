@@ -1,0 +1,7 @@
+<h1 class="intro__title"><%= _("Get answers from government and the public sector") %></h1>
+<p class="intro__description">
+  <%= _("Every citizen has the right to access information held by public authorities. By law, they have to respond.") %>
+  <% if AlaveteliConfiguration.authority_must_respond %>
+    <%= _("By law, they have to respond.") %>
+  <% end %>
+</p>

@@ -1,7 +1,13 @@
 <div class="homepage-hero">
-  <div class="row">
+  <div class="row hero__wrapper">
     <div class="hero__intro">
       <%= render :partial => "frontpage_intro_sentence" %>
+
+    <div class="new-request">
+      <div class="new-request__content">
+        <%= render :partial => "new_request" %>
+      </div>
+    </div>
 
       <p class="intro__browse">
         <%= _("Browse <a href=\"{{requests_url}}\">" \
@@ -15,10 +21,6 @@
       </p>
     </div>
 
-    <div class="hero__new-request">
-      <div class="new-request__content">
-        <%= render :partial => "new_request" %>
-      </div>
-    </div>
+
   </div>
 </div>

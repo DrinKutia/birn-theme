@@ -122,10 +122,14 @@ body {
 }
 
 a {
-  &:link,
-  &:visited {
+  &:link {
     color: $link-color;
   }
+
+  &:visited {
+    color: $color_white;
+  }
+
   &:hover,
   &:active,
   &:focus {
@@ -163,7 +167,7 @@ textarea {
 .controller_help,
 .controller_sessions,
 .controller_user,
-.controller_general {
+#general_search_redirect {
 
   @media (max-width: 928px) {
     width: 85%;
@@ -204,6 +208,11 @@ form input[type="number"] {
 input.use-datepicker[type="text"] {
   width: auto;
   background: image-url("calendar.png") no-repeat 95% 50% $form_input-bg;
+}
+
+.content, #content {
+  padding-left: 0;
+  padding-right: 0;
 }
 
 /* typography  */
@@ -919,7 +928,7 @@ a.link_to_this {
   color: $color_grey;
 }
 
-.controller_general {
+#general_search_redirect {
   input {
     accent-color: $color_light_red;
   }
@@ -1058,7 +1067,8 @@ a.link_to_this {
 /* Drop the extract indentation on small screens */
 #frontpage_examples {
   background-color: $color_dark_brown;
-  padding: 4.7rem 0;
+  padding: 4.7rem 0.9375rem;
+
   .excerpt {
     padding: 0.2em 0 0 0;
     @include respond-min($main_menu-mobile_menu_cutoff) {
@@ -1247,18 +1257,28 @@ a.link_to_this {
 }
 
 .homepage-hero {
-  background-color: $color_neutral_dark;
-  background-image: image-url("homepage-background-small.jpg");
+  background-color: $color_dark_brown;
+  background-image: image-url("home-background.png");
   background-repeat: no-repeat;
-  background-position: center top;
-  background-size: cover;
+  background-position: center right;
   color: $color_white;
   padding: 2em 0 5em;
   position: relative;
   @include respond-min($main_menu-mobile_menu_cutoff) {
-    padding: 5em 0 8em;
-    background-image: image-url("homepage-background.jpg");
+    height: 70vh;
   }
+
+  .hero__wrapper {
+    height: 100%;
+  }
+
+  .hero__intro {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+  }
+}
 
   a {
     color: $color_secondary;
@@ -1270,39 +1290,42 @@ a.link_to_this {
   }
 
   .intro__title {
+    @include typography(4.0625rem, 400, 61px);
+    margin-top: auto;
     color: $color_white;
-    text-shadow: 0 1px 2px transparentize($color_black, 0.7);
   }
 
-  .new-request__content {
-    background-color: $color_neutral_dark;
-    border-radius: 5px;
-    padding: 1.888888889em;
+  .intro__browse {
+    @include typography(1.375rem, 400, 25px);
+    margin-top: auto;
   }
 
-  .new-request__title {
+  .intro__description {
+    @include typography(1.375rem, 400, 23px);
+  }
+
+  .new-request {
+  &__title {
     color: $color_white;
     font-size: 1.4375em;
     margin: 0 0 0.5em;
   }
 
-  .new-request__description {
+  &__description {
     color: transparentize($color_white, 0.2);
     @include ie8 {
       color: $color_white;
     }
   }
-  .new-request__make-new-requests {
+
+  &__make-new-requests {
     @include button-base;
-    background-color: desaturate(darken($color_secondary, 10%), 5%);
-    color: $color_white;
-    &:hover,
-    &:active,
-    &:focus {
-      background-color: darken($color_secondary, 20%);
-    }
+    @include button-red;
+    @include typography(1.25rem, 400, 18.75px);
   }
 }
+
+  
 
 // User menu
 .pro-pill {
@@ -1666,7 +1689,7 @@ a.link_to_this {
     }
     
     .typeahead_response p {
-      @include typography(1.375px, 500, 27px);
+      @include typography(1.375rem, 500, 27px);
       color: $color_grey;
       padding-top: 2rem;
       border-top: 1px solid rgba(108, 109, 112, 0.4);
