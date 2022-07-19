@@ -133,7 +133,7 @@ a {
   &:hover,
   &:active,
   &:focus {
-    color: darken($link-color, 3%);
+    color: $color_light_red;
   }
 }
 
@@ -310,7 +310,7 @@ input.use-datepicker[type="text"] {
   &:visited:hover,
   &:visited:active,
   &:visited:focus {
-    background-color: darken($button-bg, 10%);
+    background-color: $color_light_red;
     color: $color_white;
   }
 }
@@ -364,7 +364,7 @@ a.link_button_green_large {
 @mixin follower-count {
   color: $color_dark_grey;
   padding: 0.56em 1.25em;
-  border: 1px solid $color_light_grey;
+  border: 1px solid $color_grey;
   position: relative;
   left: -3px;
   line-height: 1.6em;
@@ -452,6 +452,7 @@ a.link_button_green_large {
   /* Show which section is currently selected */
   li.selected a {
     background-color: $color_dark_brown;
+    color: $color_light_red;
     // @extend %selected-menu-item;
   }
 
@@ -801,23 +802,6 @@ div.correspondence {
   border: none;
   border-radius: 5px;
   margin-bottom: 2em;
-}
-
-.incoming.correspondence {
-  border-top: 8px solid $color_secondary;
-  .correspondence_text a {
-    color: $color_secondary;
-  }
-  a.link_to_this {
-    background-color: $color_secondary;
-  }
-}
-
-.outgoing.correspondence {
-  border-top: 8px solid $color_primary;
-  a.link_to_this {
-    background-color: $color_primary;
-  }
 }
 
 a.correspondence__header__date,
@@ -1270,6 +1254,10 @@ a.link_to_this {
     margin-bottom: 4rem;
   }
 
+  a:hover {
+    color: $color_light_red;
+  }
+  
   .request-listing__request-body p:first-child {
     font-weight: 400;
     font-size: 1.25rem;
@@ -1474,7 +1462,6 @@ a.link_to_this {
   }
 }
 
-
 // signin/signup
 
 .form_item_note,
@@ -1570,6 +1557,7 @@ a.link_to_this {
     .action-bar__follower-count {
       border: 0;
       text-align: right;
+      color: $color_light_grey;
     }
   }
 }
@@ -1798,10 +1786,118 @@ a.link_to_this {
     }
   }
 
+  .request-header__action-bar {
+    border-top: 1px solid rgba(108, 109, 112, 0.4);
+    border-bottom: 1px solid rgba(108, 109, 112, 0.4);
+  }
+  
+  .request-header__subtitle {
+    font-size: 1.125rem;
+    font-weight: 400;
+  }
+
   .sidebar {
     .feed_link_main:nth-of-type(1) a {
         @include button-with-red-border();
         margin-left: 0;
+    }
+  }
+
+  .action-bar__follow {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+
+    .feed_link_toolbar {
+        width: 100%;
+    }
+
+    .track__action {
+      width: 100%;
+      text-align: center;
+      @include button-base;
+      @include button-with-red-border;
+    }
+
+    .action-bar__follower-count {
+      border: 0;
+      text-align: right;
+      color: $color_grey;
+    }
+  }
+
+  .right_column {
+  .new-request-cta a {
+    @include button-base;
+    @include button-red;
+    padding: 1.25rem;    
+  }
+
+  .sidebar__section {
+    h2 {
+      @include typography(1.25rem, 400, 21px);
+      color: $color_grey;
+    }
+
+    > div {
+      @include typography(1rem, 400, 20px);
+    }
+  }
+
+  .copyright-notice {
+    border-top: 1px solid rgba(108, 109, 112, 0.4);
+  }
+}
+
+
+  .left_column {
+    .correspondence__header, .correspondence_text, .event_actions, .correspondence__footer {
+      background-color: $color_brown;
+      color: $color_light_red;
+    }
+
+    .correspondence__header {
+      border-bottom: 1px solid rgba(108, 109, 112, 0.4);
+    }
+
+    .correspondence__footer {
+      border-top: 1px solid rgba(108, 109, 112, 0.4);
+
+      input {
+        background-color: $form_input-bg;
+        color: $color_white;
+        font-size: 1.1rem;
+        padding: 1.5625rem;
+      }
+
+      &__cplink {
+        display: flex;
+        align-items: center;
+
+        > a {
+          font-size: 1.15rem;
+        }
+        
+        a:nth-of-type(1) {
+          background-color: $color_light_red;
+          color: $color_white;
+          border: 1px solid $color_light_red;
+          margin: 0 0.7rem;
+        }
+      }
+    }
+    
+    .outgoing.correspondence, .incoming.correspondence {
+      border-top: 8px solid $color_light_red;
+    }
+
+    div.comment_in_request {
+      border: 1px solid $color_grey !important;
+      margin: 0 0 2rem 0;
+    }
+
+    .comment_content {
+      background-color: $color_brown;
     }
   }
 }

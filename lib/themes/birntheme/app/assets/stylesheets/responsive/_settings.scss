@@ -1,6 +1,12 @@
+@font-face {
+    font-family: "Hit The Road";
+    src: url('../assets/fonts/hitroad.woff2') format('woff2'),
+        url('../assets/fonts/hitroad.woff') format('woff');
+}
+
 $main_menu-mobile_menu_cutoff: 58em;
 $row-width: 64em;
-$body-font-family: "Helvetica Neue", Arial, Helvetica, Helmet, Freesans, sans-serif;
+$body-font-family: "Hit The Road", Arial, Helvetica, Helmet, Freesans, sans-serif;
 $base-font-size: 16px;
 
 // Specify the filename and dimensions of your logo file here
@@ -39,7 +45,8 @@ $body-font-color: #ffffff;
 // $link-color: darken($color_blue, 20%);
 $link-color: $color_light_red;
 $action-color: $color_green;
-$font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-family: "Hit The Road", "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+// $font-family: "Hit The Road", "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
 $form_input-bg: $color_grey;
 $form-label-font-color: $color_grey;
 
