@@ -388,6 +388,21 @@ a.link_button_green_large {
   @media (min-width: $main_menu-mobile_menu_cutoff) {
     box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.1);
   }
+
+  .navigation {
+    li a {
+      background-color: $color_brown;
+      color: $color_grey;
+      @include typography(1.25rem, 400, 19px);
+    }
+  }
+
+  .default-homepage-navigation {
+    li a {
+      background-color: $color_dark_brown;
+      color: $color_light_red;
+    }
+  }
 }
 
 #banner_inner {
@@ -1396,7 +1411,7 @@ a.link_to_this {
     
     .body-listing__request-count {
       font-size: 1rem;
-      color: $color_white;
+      color: $color_grey;
       margin-top: 1.25rem;
     }
 
@@ -1460,6 +1475,13 @@ a.link_to_this {
       }
     }
   }
+}
+
+#authority_selection {
+  max-width: none;
+   #query {
+     width: calc(100% - 10em);
+   }
 }
 
 // signin/signup
@@ -1561,6 +1583,12 @@ a.link_to_this {
     }
   }
 }
+
+  .body_listing  {
+    .body-listing__request-count {
+      color: $color_white;
+    }
+  }
 
   .authority__body__sidebar {
     h2 {
@@ -1676,13 +1704,30 @@ a.link_to_this {
   }
 }
 
-// Make a request
+// Browse and make a request pages
 
 .controller_request {
   h1 {
     @include typography(4.0625rem, 400, 61px);
     margin-bottom: 2.4rem;
     margin-top: 0;
+  }
+
+  .header_right {
+    h2 {
+      @include typography(1.25rem, 400, 23px);
+      color: $color_grey;
+
+      &:first-child {
+        color: $color_light_red;
+      }
+    }
+  }
+
+  .search_latest__list {
+    li a {
+      @include typography(1rem, 400, 19px);
+    }
   }
 
   #filter_requests_form {
@@ -1825,31 +1870,11 @@ a.link_to_this {
       color: $color_grey;
     }
   }
-
-  .right_column {
-  .new-request-cta a {
-    @include button-base;
-    @include button-red;
-    padding: 1.25rem;    
-  }
-
-  .sidebar__section {
-    h2 {
-      @include typography(1.25rem, 400, 21px);
-      color: $color_grey;
-    }
-
-    > div {
-      @include typography(1rem, 400, 20px);
-    }
-  }
-
-  .copyright-notice {
-    border-top: 1px solid rgba(108, 109, 112, 0.4);
-  }
 }
 
+// User made a request to the department page
 
+#request_show {
   .left_column {
     .correspondence__header, .correspondence_text, .event_actions, .correspondence__footer {
       background-color: $color_brown;
@@ -1900,11 +1925,27 @@ a.link_to_this {
       background-color: $color_brown;
     }
   }
-}
 
-#authority_selection {
-  max-width: none;
-   #query {
-     width: calc(100% - 10em);
-   }
+  .right_column {
+  .new-request-cta a {
+    @include button-base;
+    @include button-red;
+    padding: 1.25rem;    
+  } 
+
+  .sidebar__section {
+    h2 {
+      @include typography(1.25rem, 400, 21px);
+      color: $color_grey;
+    }
+
+    > div {
+      @include typography(1rem, 400, 20px);
+    }
+  }
+
+  .copyright-notice {
+    border-top: 1px solid rgba(108, 109, 112, 0.4);
+    }
+  }
 }

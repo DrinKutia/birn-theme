@@ -4,4 +4,14 @@
       jQuery(this).parent().toggleClass('active');
     });
   });
+
+  const navigation = document.getElementById("navigation");
+  const itemsInNavigation = document.querySelectorAll(".navigation-item");
+
+  // convert itemsInNavigation (NodeList[] type object) to array
+  const navItems = Array.from(itemsInNavigation);
+
+  let filterItemSelected = navItems.filter((item => item.classList.contains("selected")));
+
+  if(!filterItemSelected.length) navigation.classList.add("default-homepage-navigation");
 </script>
