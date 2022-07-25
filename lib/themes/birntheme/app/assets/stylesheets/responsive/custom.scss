@@ -1746,7 +1746,7 @@ a {
     }
 
     input.use-datepicker[type="text"] {
-      width: 46% !important;
+      width: 46%;
     }
 
     input[type="submit"] {
@@ -2047,4 +2047,35 @@ a {
 
 #navigation_search_form, #navigation_search {
     width: max-content;
+}
+
+
+// Responsive
+
+@media (min-width: 330px) {
+  #request_list {
+    #request_date_after, #request_date_before, .list-filter-item .form_label, .filter-request-types {
+      width: 100%;
+    }
+
+    .filter-request-types {
+      ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        li {
+          width: 80%;
+        }
+      }
+    }
+
+    .request_listing {
+        display: flex;
+        flex-direction: column;
+
+        .request_right {
+            margin-top: 1.3rem;
+        }
+    }
+  }
 }
