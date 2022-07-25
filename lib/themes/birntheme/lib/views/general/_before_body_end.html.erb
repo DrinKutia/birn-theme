@@ -5,6 +5,8 @@
     });
   });
 
+  // Change the style of navigation dynamically.
+  // If any of the nav items is not selected, it will add the "default-homepage-navigation" class to the nav(through that class, it gets different style).
   const navigation = document.getElementById("navigation");
   const itemsInNavigation = document.querySelectorAll(".navigation-item");
 
@@ -14,4 +16,46 @@
   let filterItemSelected = navItems.filter((item => item.classList.contains("selected")));
 
   if(!filterItemSelected.length) navigation.classList.add("default-homepage-navigation");
+
+
+
+  // handle opening and closing searchBar
+  const searchWrapper = document.getElementById("search_wrapper");
+  const searchBar = document.getElementById("navigation_search_bar");
+  const searchIcon = document.getElementById("search_icon");
+
+  const checkIfElementExistsThroughID = (elementID) => {
+    const element = document.querySelector(`#${elementID}`);
+
+    if(element != null) {
+      return true
+    }
+    else {
+      return false
+    }
+  }
+
+  searchIcon.onclick = () => {
+    searchBar.setAttribute("id", "navigation_search_bar__open");
+    searchWrapper.setAttribute("id", "search_wrapper__open");
+
+    // Make a short delay with setTimeout.
+    // I have used setTimeout because its asynchronous and it will be executed after synchronous code is executed.
+    // So, after searchBar is open, searchIcon will change the "type" attribute from "button" to "submit".
+    // Then when its type is submit, the user can click on it to search, or it can press Enter also for searching.
+    setTimeout(() => {
+      if(checkIfElementExistsThroughID(searchBar.id)) searchIcon.setAttribute("type", "submit");
+    }, 0);
+  }
+
+  // If click outside of the searchWrapper => do something
+  document.addEventListener("mouseup", function (e) {
+    if (!searchWrapper.contains(e.target)) {
+      searchIcon.setAttribute("type", "button");
+      searchWrapper.setAttribute("id", "search_wrapper");
+      searchBar.setAttribute("id", "navigation_search_bar");
+    }
+  });
+
+
 </script>
