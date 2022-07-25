@@ -1742,7 +1742,7 @@ a {
 
   #filter_requests_form {
     input[type="text"] {
-      width: 100% !important;
+      width: 100%;
     }
 
     input.use-datepicker[type="text"] {
@@ -2052,7 +2052,7 @@ a {
 
 // Responsive
 
-@media (min-width: 330px) {
+@media (max-width: 550px) {
   #request_list {
     #request_date_after, #request_date_before, .list-filter-item .form_label, .filter-request-types {
       width: 100%;
@@ -2064,8 +2064,15 @@ a {
         flex-direction: column;
         align-items: center;
         li {
-          width: 80%;
+          width: 50%;
         }
+      }
+    }
+
+    .list-filter-item {
+      input[type="submit"] {
+        display: block;
+        margin: 0 auto;
       }
     }
 
@@ -2076,6 +2083,58 @@ a {
         .request_right {
             margin-top: 1.3rem;
         }
+    }
+  }
+}
+
+@media (min-width: 550px) and (max-width: 925px) {
+  #request_list {
+     .list-filter-item .form_label {
+      width: 80%;
+    }
+
+    #request_date_after, #request_date_before, #query {
+      width: 98%;
+    }
+
+    #header_right, .results_section {
+      float: none;
+      width: 80%;
+      margin: 0 auto;
+    }
+
+    .results_section {
+      width: 85%;
+    }
+
+    h1 {
+     width: 80%;
+     margin: 0 auto 2.4rem auto;
+    }
+
+    .list-filter-item {
+      width: 80%;
+      margin: 0 auto;
+
+      input[type="submit"] {
+        display: block;
+        margin: 0 auto;
+      }
+
+      .form_label  {
+        display: block;
+      }
+    }
+
+    .filter-request-types {
+      ul {
+        margin-top: 2rem;
+        text-align: center;
+      }
+    }
+
+    .sidebar .feed_link_main:nth-of-type(1) a {
+      width: 50%;
     }
   }
 }
