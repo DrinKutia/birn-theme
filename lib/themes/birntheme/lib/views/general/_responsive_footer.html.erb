@@ -10,18 +10,37 @@
     <div class="footer__pages">
         <ul>
           <li>
-          <%= link_to _("Make a request") %>
+          <%= link_to _("Make a request"), select_authority_path %>
           </li>
           <li>
-          <%= link_to _("Browse requests") %>
+          <%= link_to _("Browse requests"), request_list_successful_path %>
           </li>
           <li>
-          <%= link_to _("View authorities") %>
+          <%= link_to _("View authorities"), list_public_bodies_default_path %>
           </li>
           <li>
-          <%= link_to _("Help") %>
+          <%= link_to _("Help"), help_about_path  %>
           </li>
         </ul>
+    </div>
+    <div class="footer__social-medias">
+      <ul>
+        <li>
+          <a href="https://twitter.com/<%= AlaveteliConfiguration::twitter_username %>" >
+            <%= image_tag("facebook.png", :alt => "Facebook") %>
+          </a>
+        </li>
+        <li>
+          <a href="https://facebook.com/<%= AlaveteliConfiguration::facebook_username %>" >
+            <%= image_tag("instagram.png", :alt => "Instagram") %>
+          </a>
+        </li>
+        <li>
+          <a href="https://instagram.com/" >
+            <%= image_tag("twitter.png", :alt => "Twitter") %>
+          </a>
+        </li>
+      </ul>
     </div>
   </div>
 </div>
